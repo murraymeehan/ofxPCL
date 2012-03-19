@@ -1,14 +1,19 @@
 #pragma once
 
 
-#include <pcl/point_types.h>
+
 #include <pcl/io/pcd_io.h>
-#include <pcl/kdtree/kdtree_flann.h>
 #include <pcl/features/normal_3d.h>
-#include <pcl/surface/gp3.h>
 #include <pcl/filters/passthrough.h>
 #include <pcl/kdtree/kdtree_flann.h>
+#include <pcl/point_types.h>
+#include <pcl/surface/gp3.h>
+#include <pcl/surface/organized_fast_mesh.h>
+#include <pcl/surface/surfel_smoothing.h>
+#include <pcl/surface/marching_cubes_greedy.h>
 #include <pcl/surface/mls.h>
+
+
 
 #include "ofConstants.h"
 #include "ofMesh.h"

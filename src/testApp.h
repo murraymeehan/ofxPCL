@@ -2,15 +2,18 @@
 
 #include <pcl/io/openni_grabber.h>
 #include <pcl/features/integral_image_normal.h>
-#include <pcl-1.3/pcl/keypoints/sift_keypoint.h>
-#include "ofxPCL.h"
+#include <pcl/keypoints/sift_keypoint.h>
+#include <pcl/surface/simplification_remove_unused_vertices.h>
+#include <pcl/filters/voxel_grid.h>
+#include <pcl/features/fpfh_omp.h>
 
-
-
-#include "ofMain.h"
+#include "segmentation.h"
 #include "gui/ofSlider.h"
 #include "gui/ofToggle.h"
 #include "gui/ofPanel.h"
+
+#include "ofxPCL.h"
+#include "ofMain.h"
 #include "ofxGrabCam.h"
 
 class testApp : public ofBaseApp{

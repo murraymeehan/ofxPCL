@@ -3,14 +3,14 @@
 # OF_ROOT allows to move projects outside apps/* just set this variable to the
 # absoulte path to the OF root folder
 
-OF_ROOT = ../../..
+OF_ROOT = ~/499/openFrameworks
 
 
 # USER_CFLAGS allows to pass custom flags to the compiler
 # for example search paths like:
 # USER_CFLAGS = -I src/objects
 
-USER_CFLAGS = $(shell pkg-config pcl_common-1.3 pcl_surface-1.3 pcl_filters-1.3 openni-dev eigen3 --cflags)
+USER_CFLAGS = $(shell pkg-config pcl_common-1.5 pcl_surface-1.5 pcl_filters-1.5 openni-dev eigen3 --cflags)
 
 
 # USER_LDFLAGS allows to pass custom flags to the linker

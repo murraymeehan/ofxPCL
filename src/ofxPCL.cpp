@@ -1,7 +1,4 @@
 #include "ofxPCL.h"
-#include <pcl/surface/organized_fast_mesh.h>
-#include <pcl/surface/surfel_smoothing.h>
-#include <pcl/surface/marching_cubes_greedy.h>
 
 namespace ofxPCL{
 	void toOf(pcl::PointCloud<pcl::PointXYZRGB>::Ptr & cloud, ofMesh & mesh, float xfactor, float yfactor, float zfactor){

@@ -1,9 +1,4 @@
 #include "testApp.h"
-#include "ofxPCL.h"
-#include <pcl/surface/simplification_remove_unused_vertices.h>
-#include <pcl/filters/voxel_grid.h>
-#include <pcl/features/fpfh_omp.h>
-#include "segmentation.h"
 
 using namespace ofxPCL;
 
