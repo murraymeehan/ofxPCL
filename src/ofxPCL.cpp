@@ -7,7 +7,7 @@ namespace ofxPCL{
 		mesh.getColors().resize(cloud->points.size());
 		int i=0, n=0;
 		if(cloud->is_dense){
-			for(int i=0;i<cloud->points.size();i++){
+			for(unsigned int i=0;i<cloud->points.size();i++){
 				mesh.getVertices()[i] = ofVec3f(cloud->points[i].x*xfactor,cloud->points[i].y*yfactor,cloud->points[i].z*zfactor);
 				mesh.getColors()[i] = ofColor(cloud->points[i].r,cloud->points[i].g,cloud->points[i].b);
 			}
@@ -33,13 +33,13 @@ namespace ofxPCL{
 		mesh.getVertices().resize(cloud->points.size());
 		mesh.getColors().resize(cloud->points.size());
 		if(cloud->is_dense){
-			for(int i=0;i<cloud->points.size();i++){
+			for(unsigned int i=0;i<cloud->points.size();i++){
 				mesh.getVertices()[i] = ofVec3f(cloud->points[i].x*xfactor,cloud->points[i].y*yfactor,cloud->points[i].z*zfactor);
 				mesh.getColors()[i] = ofColor(cloud->points[i].r,cloud->points[i].g,cloud->points[i].b);
 			}
 			if(normals){
 				mesh.getNormals().resize(normals->points.size());
-				for(int i=0;i<normals->points.size();i++){
+				for(unsigned int i=0;i<normals->points.size();i++){
 					mesh.getNormals()[i] = ofVec3f(normals->points[i].normal_x,normals->points[i].normal_y,normals->points[i].normal_z);
 				}
 			}
@@ -58,7 +58,7 @@ namespace ofxPCL{
 					i++;
 				}
 			}
-			for(int i=0;i<normals->points.size();i++){
+			for(unsigned int i=0;i<normals->points.size();i++){
 				mesh.getNormals()[i] = ofVec3f(normals->points[i].normal_x,normals->points[i].normal_y,normals->points[i].normal_z);
 			}
 		}
@@ -68,7 +68,7 @@ namespace ofxPCL{
 		mesh.setMode(OF_PRIMITIVE_POINTS);
 		mesh.getVertices().resize(cloud->points.size());
 		//mesh.getColors().resize(cloud->points.size());
-		for(int i=0;i<cloud->points.size();i++){
+		for(unsigned int i=0;i<cloud->points.size();i++){
 			mesh.getVertices()[i] = ofVec3f(cloud->points[i].x*xfactor,cloud->points[i].y*yfactor,cloud->points[i].z*zfactor);
 			//mesh.getColors()[i] = ofFloatColor(cloud->points[i].intensity,cloud->points[i].intensity,cloud->points[i].intensity);
 		}
@@ -77,8 +77,8 @@ namespace ofxPCL{
 	void addIndices(ofMesh & mesh, pcl::PolygonMesh::Ptr & triangles){
 		mesh.getIndices().clear();
 		mesh.setMode(OF_PRIMITIVE_TRIANGLES);
-		for(int i=0;i<triangles->polygons.size();i++){
-			for(int j=0;j<triangles->polygons[i].vertices.size();j++){
+		for(unsigned int i=0;i<triangles->polygons.size();i++){
+			for(unsigned int j=0;j<triangles->polygons[i].vertices.size();j++){
 				mesh.addIndex(triangles->polygons[i].vertices[j]);
 			}
 		}

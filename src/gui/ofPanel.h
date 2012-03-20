@@ -88,13 +88,13 @@ public:
 	}
 	
 	virtual void saveToXml(ofxXmlSettings& xml) {
-		for(int i = 0; i < collection.size(); i++){
+		for(unsigned int i = 0; i < collection.size(); i++){
 			collection[i]->saveToXml(xml);
 		}
 	}
 	
 	virtual void loadFromXml(ofxXmlSettings& xml) {
-		for(int i = 0; i < collection.size(); i++){
+		for(unsigned int i = 0; i < collection.size(); i++){
 			collection[i]->loadFromXml(xml);
 		}
 	}
@@ -119,7 +119,7 @@ public:
 		ofMouseEventArgs a = args;
 		a.x -= b.x;
 		a.y -= b.y;		
-		for(int i = 0; i < collection.size(); i++){
+		for(unsigned int i = 0; i < collection.size(); i++){
 			collection[i]->mouseMoved(a);
 		}		
 	}
@@ -130,7 +130,7 @@ public:
 			ofMouseEventArgs a = args;
 			a.x -= b.x;
 			a.y -= b.y;
-			for(int i = 0; i < collection.size(); i++){
+			for(unsigned int i = 0; i < collection.size(); i++){
 				collection[i]->mousePressed(a);
 			}
 		}
@@ -142,7 +142,7 @@ public:
 			ofMouseEventArgs a = args;
 			a.x -= b.x;
 			a.y -= b.y;			
-			for(int i = 0; i < collection.size(); i++){
+			for(unsigned int i = 0; i < collection.size(); i++){
 				collection[i]->mouseDragged(a);
 			}
 		}
@@ -150,7 +150,7 @@ public:
 	
 	virtual void mouseReleased(ofMouseEventArgs & args){
 		bGuiActive = false;
-		for(int k = 0; k < collection.size(); k++){
+		for(unsigned int k = 0; k < collection.size(); k++){
 			ofMouseEventArgs a = args;
 			a.x -= b.x;
 			a.y -= b.y;			
@@ -178,7 +178,7 @@ public:
 		saveIcon.draw(saveBox.x, saveBox.y);
 		ofPopMatrix();
 		
-		for(int i = 0; i < collection.size(); i++){
+		for(unsigned int i = 0; i < collection.size(); i++){
 			collection[i]->draw();
 		}
 		

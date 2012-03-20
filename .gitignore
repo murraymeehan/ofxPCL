@@ -2,3 +2,4 @@
 *.ply
 *.pcd
 *.log
+obj/

@@ -9,7 +9,7 @@ void testApp::createMeshes(){
 	of_keypoints.resize(clouds.size());
 	of_clouds.resize(clouds.size());
 	smooths.resize(clouds.size());
-	for(int i=0;i<clouds.size();i++){
+	for(unsigned int i=0;i<clouds.size();i++){
 		//voxelGridFilter.setInputCloud(clouds[i]);
 		//voxelGridFilter.filter(*smoothed);
 		toOf(clouds[i],of_clouds[i],factorX,factorY,factorZ);
@@ -31,8 +31,8 @@ void testApp::createMeshes(){
 		ofLogNotice() << "created mesh" << i;
 
 	}
-	if(!clouds.empty())
-		centroid = meshes[0].getCentroid();
+	/*if(!clouds.empty()) {
+		 centroid = meshes[0].getCentroid(); // can't use ofMesh::getCentroid on PCL mesh*/
 }
 
 void testApp::loadBYOS(){
@@ -125,14 +125,16 @@ void testApp::substractPlane(){
 	distanceThreshold = 0.1;
 	maxIters = 5;
 
+    /*
     if (bSubstractPlane){
-        for(int i= 0; i< clouds.size(); i++){
+        for(unsigned int i= 0; i< clouds.size(); i++){
             size_t n = clouds[i]->size ();
-            clouds[i] = findAndSubtractPlane (clouds[i], distanceThreshold, (int)maxIters);
-            cout << "Subtracted %zu points along the detected plane\n" <<  n - clouds[i]->size () << endl;
+//            clouds[i] = findAndSubtractPlane (clouds[i], distanceThreshold, (int)maxIters);
+//            cout << "Subtracted %zu points along the detected plane\n" <<  n - clouds[i]->size () << endl;
         }
 
     }
+    */
 }
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -165,25 +167,25 @@ void testApp::setup(){
 
 	//loadBYOS();
 	loadPCDCollection("minimouse");
-	substractPlane();
-	createMeshes();
+//	substractPlane();
+//	createMeshes();
 
 
 
-	gui.setup("smooth");
-	gui.add(smoothRadius.setup("smooth",30./factorX,0,1000/factorX));
-	gui.add(smoothBtn.setup("smooth",false));
-	//gui.add(minZ.setup("min z",0,0,10));
-	//gui.add(maxZ.setup("max z",10,0,5));
-	gui.add(rotY.setup("rot y",0,-180,180));
-	gui.add(rotX.setup("rot x",0,-180,180));
-	gui.add(rotZ.setup("rot z",0,-180,180));
-	gui.add(pc_mesh.setup("pc/mesh",true));
-	gui.add(wireframe.setup("wireframe",true));
-	gui.add(showSmoothed.setup("showSmoothed",false));
+//	gui.setup("smooth");
+//	gui.add(smoothRadius.setup("smooth",30./factorX,0,1000/factorX));
+//	gui.add(smoothBtn.setup("smooth",false));
+//	//gui.add(minZ.setup("min z",0,0,10));
+//	//gui.add(maxZ.setup("max z",10,0,5));
+//	gui.add(rotY.setup("rot y",0,-180,180));
+//	gui.add(rotX.setup("rot x",0,-180,180));
+//	gui.add(rotZ.setup("rot z",0,-180,180));
+//	gui.add(pc_mesh.setup("pc/mesh",true));
+//	gui.add(wireframe.setup("wireframe",true));
+//	gui.add(showSmoothed.setup("showSmoothed",false));
 
-	gui.add(currentMesh.setup("current",0,0,meshes.size()-1,true));
-	gui.add(zoomZ.setup("zoom Z",0,0,ofGetHeight()*2));
+//	gui.add(currentMesh.setup("current",0,0,meshes.size()-1,true));
+//	gui.add(zoomZ.setup("zoom Z",0,0,ofGetHeight()*2));
 
 
 
@@ -201,32 +203,32 @@ void testApp::cloud_cb_ (const pcl::PointCloud<pcl::PointXYZRGB>::ConstPtr &_clo
 
 //--------------------------------------------------------------
 void testApp::update(){
-	if(smoothBtn.getValue()!=prevSmooth){
-		pcl::PointCloud<pcl::PointXYZRGB>::Ptr smoothed(new pcl::PointCloud<pcl::PointXYZRGB>);
+//	if(smoothBtn.getValue()!=prevSmooth){
+//		pcl::PointCloud<pcl::PointXYZRGB>::Ptr smoothed(new pcl::PointCloud<pcl::PointXYZRGB>);
 
-		smooth(clouds[currentMesh.getValue()],smoothed,normals,smoothRadius.getValue());
-		//smoothed  = cloud;
+//		smooth(clouds[currentMesh.getValue()],smoothed,normals,smoothRadius.getValue());
+//		//smoothed  = cloud;
 
-		toOf(smoothed,normals,smooths[currentMesh.getValue()],factorX,factorY,factorZ);
-		pcl::PolygonMesh::Ptr triangles = getMesh(smoothed);
+//		toOf(smoothed,normals,smooths[currentMesh.getValue()],factorX,factorY,factorZ);
+//		pcl::PolygonMesh::Ptr triangles = getMesh(smoothed);
 
-		addIndices(smooths[currentMesh.getValue()],triangles);
-		prevSmooth = smoothBtn.getValue();
-	}
+//		addIndices(smooths[currentMesh.getValue()],triangles);
+//		prevSmooth = smoothBtn.getValue();
+//	}
 
-	if(isNewFrame){
-		/*mutex.lock();
+//	if(isNewFrame){
+//		/*mutex.lock();
 
-		pcl::PointCloud<pcl::Normal>::Ptr normals = calculateNormals(cloud);
-		pcl::PolygonMesh::Ptr triangles = getMesh(cloud);
+//		pcl::PointCloud<pcl::Normal>::Ptr normals = calculateNormals(cloud);
+//		pcl::PolygonMesh::Ptr triangles = getMesh(cloud);
 
-		toOf(cloud,normals,mesh,640,480,-640);
-		addIndices(mesh,triangles);
-		//toOf(smoothed,normals,smoothedMesh,640,480,-640);
-		centroid = mesh.getCentroid();
-		isNewFrame = false;
-		mutex.unlock();*/
-	}
+//		toOf(cloud,normals,mesh,640,480,-640);
+//		addIndices(mesh,triangles);
+//		//toOf(smoothed,normals,smoothedMesh,640,480,-640);
+//		centroid = mesh.getCentroid();
+//		isNewFrame = false;
+//		mutex.unlock();*/
+//	}
 
 
 }
@@ -234,46 +236,46 @@ void testApp::update(){
 //--------------------------------------------------------------
 void testApp::draw(){
 
-	glEnable(GL_DEPTH_TEST);
+//	glEnable(GL_DEPTH_TEST);
 
-	//camera.begin();
-	ofPushMatrix();
-	ofTranslate(ofGetWidth()/2,ofGetHeight()/2,zoomZ.getValue());
-	ofTranslate(centroid);
-	ofRotateZ(rotZ.getValue());
-	ofRotateY(rotY.getValue());
-	ofRotateX(rotX.getValue());
-	ofTranslate(-centroid);
-	glPointSize(1);
-	ofSetColor(ofColor::white);
+//	//camera.begin();
+//	ofPushMatrix();
+//	ofTranslate(ofGetWidth()/2,ofGetHeight()/2,zoomZ.getValue());
+//	ofTranslate(centroid);
+//	ofRotateZ(rotZ.getValue());
+//	ofRotateY(rotY.getValue());
+//	ofRotateX(rotX.getValue());
+//	ofTranslate(-centroid);
+//	glPointSize(1);
+//	ofSetColor(ofColor::white);
 
-	if(pc_mesh.getValue()){
-		if(showSmoothed.getValue()){
-			if(wireframe.getValue()){
-				smooths[currentMesh.getValue()].drawWireframe();
-			}else{
-				smooths[currentMesh.getValue()].draw();
-			}
-		}else{
-			if(wireframe.getValue()){
-				meshes[currentMesh.getValue()].drawWireframe();
-			}else{
-				meshes[currentMesh.getValue()].draw();
-			}
-		}
-	}else{
-		of_clouds[currentMesh.getValue()].draw();
-	}
-	glPointSize(4);
-	ofSetColor(ofColor::red);
-	of_keypoints[currentMesh.getValue()].draw();
+//	if(pc_mesh.getValue()){
+//		if(showSmoothed.getValue()){
+//			if(wireframe.getValue()){
+//				smooths[currentMesh.getValue()].drawWireframe();
+//			}else{
+//				smooths[currentMesh.getValue()].draw();
+//			}
+//		}else{
+//			if(wireframe.getValue()){
+//				meshes[currentMesh.getValue()].drawWireframe();
+//			}else{
+//				meshes[currentMesh.getValue()].draw();
+//			}
+//		}
+//	}else{
+//		of_clouds[currentMesh.getValue()].draw();
+//	}
+//	glPointSize(4);
+//	ofSetColor(ofColor::red);
+//	of_keypoints[currentMesh.getValue()].draw();
 
-	ofPopMatrix();
-	//camera.end();
+//	ofPopMatrix();
+//	//camera.end();
 
-	glDisable(GL_DEPTH_TEST);
-	gui.draw();
-	//ofDrawBitmapString(ofToString(ofGetFrameRate()),20,20);
+//	glDisable(GL_DEPTH_TEST);
+//	gui.draw();
+//	//ofDrawBitmapString(ofToString(ofGetFrameRate()),20,20);
 }
 
 //--------------------------------------------------------------

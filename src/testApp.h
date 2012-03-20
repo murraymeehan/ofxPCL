@@ -7,14 +7,15 @@
 #include <pcl/filters/voxel_grid.h>
 #include <pcl/features/fpfh_omp.h>
 
+#include "ofMain.h"
+#include "ofxGrabCam.h"
+
+#include "ofxPCL.h"
 #include "segmentation.h"
+#include "typedefs.h"
 #include "gui/ofSlider.h"
 #include "gui/ofToggle.h"
 #include "gui/ofPanel.h"
-
-#include "ofxPCL.h"
-#include "ofMain.h"
-#include "ofxGrabCam.h"
 
 class testApp : public ofBaseApp{
 

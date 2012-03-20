@@ -1,7 +1,5 @@
 #pragma once
 
-
-
 #include <pcl/io/pcd_io.h>
 #include <pcl/features/normal_3d.h>
 #include <pcl/filters/passthrough.h>
@@ -12,8 +10,6 @@
 #include <pcl/surface/surfel_smoothing.h>
 #include <pcl/surface/marching_cubes_greedy.h>
 #include <pcl/surface/mls.h>
-
-
 
 #include "ofConstants.h"
 #include "ofMesh.h"

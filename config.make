@@ -23,8 +23,10 @@ USER_LDFLAGS =
 # use this to add system libraries for example:
 # USER_LIBS = -lpango
 
-USER_LIBS = -lusb-1.0 -lpcl_surface -lpcl_registration -lpcl_sample_consensus -lpcl_features -lm -lpcl_kdtree -lpcl_range_image -lpcl_filters -lpcl_search -lflann_cpp -lpcl_common -lpcl_io -lOpenNI -lpcl_octree -lpcl_segmentation
-
+USER_LIBS = -lusb-1.0 -lpcl_surface -lpcl_registration -lpcl_sample_consensus -lpcl_features -lm -lpcl_kdtree 
+USER_LIBS += -lpcl_range_image_border_extractor -lpcl_filters -lpcl_search -lflann_cpp -lpcl_common -lpcl_io -lOpenNI -lpcl_octree -lpcl_segmentation
+#libpcl_range_image_border_extractor
+#pcl_range_image
 
 # change this to add different compiler optimizations to your project
 
